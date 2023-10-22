@@ -10,7 +10,22 @@ assert find('apple') == 0
 assert find('fish') == 5
 '''
 def find(needle):
-    pass
+    data = [
+        'apple',
+        'banana',
+        'cookie',
+        'fruit',
+        'cherries',
+        'fish'
+    ]
+
+    for i, item in enumerate(data):
+        if item == needle:
+            return i
+        
+    return -1
+
+pass
 
 
 if __name__ == "__main__":
