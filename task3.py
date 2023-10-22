@@ -8,36 +8,26 @@ Read the contents of task03.txt into your program and determine the points value
 For sample data task03.txt, the largest sum should be 68787
 """
 
-def clusterpoints(cluster):
-    return sum(map(int, cluster))
+def calculate_cluster_points(cluster):
+    return sum(int(point) for point in cluster)
 
-def find_largest(file_path):
+def find_cluster_with_largest_sum(filename):
     largest_sum = 0
     current_cluster = []
-    largest_cluster = []
     
-    with open(file_path, 'r') as file:
-        for line in file:
-            line = line.strip()
-            
-            if line:
-                current_cluster.append(line)
-            else:
-                cluster_sum = clusterpoints(current_cluster)
-                if cluster_sum > largest_sum:
-                    largest_sum = cluster_sum
-                    largest_cluster = current_cluster
-                current_cluster = []
+    with open(filename, 'r') as file:
+        clusters = file.read().strip().split('\n\n')
+        for cluster in clusters:
+            points = cluster.strip().split('\n')
+            cluster_sum = calculate_cluster_points(points)
+            if cluster_sum > largest_sum:
+                largest_sum = cluster_sum
+                current_cluster = points
 
-    
-    cluster_sum = clusterpoints(current_cluster)
-    if cluster_sum > largest_sum:
-        largest_cluster = current_cluster
+    return current_cluster, largest_sum
 
-    return largest_cluster, largest_sum
-
-file_path = "task03.txt"  
-largest_cluster, largest_sum = find_largest(file_path)
+filename = "task03.txt"  
+largest_cluster, largest_sum = find_cluster_with_largest_sum(filename)
 
 print("Largest cluster with sum:", largest_sum)
 for point in largest_cluster:
