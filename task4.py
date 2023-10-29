@@ -12,14 +12,37 @@ Create a function that reads the specific value for a specific level and an armo
 
 """
 
-def target(lvl,ac):
-    return
+
+
+class Stats:
+
+    def __init__(self, filename):
+        self.filename = filename
+        self.data = self.loaddata()
+
+    def loaddata(self):
+        with open(self.filename, 'r') as file:
+            lines=file.readlines()
+            data = [list(map(int, line.split()))for line in lines]
+        return data
+
+
+
+    def target(self, lvl,ac):
+        levelindex = lvl - 1
+        acindex = 10 - ac
+        targetnumber = self.data[levelindex][acindex]
+    
+        return targetnumber
+
 
 
 def tests():
-    assert target(3,7) == 23
-    assert target(9,-1) == 17
-    assert target(13,-10) == 20
+    filename = "task04.txt"
+    stats = Stats(filename)
+    assert stats.target(3,7) == 23
+    assert stats.target(9,-1) == 17
+    assert stats.target(13,-10) == 20
 
 if __name__=="__main__":
     tests()

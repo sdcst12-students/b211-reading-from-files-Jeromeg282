@@ -13,3 +13,10 @@ Apple Inc.
 Enter stock symbol: YANG
 No matches
 """
+
+import csv
+
+
+class Search:
+    def __init__(self, filename):
+        
