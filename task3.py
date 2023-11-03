@@ -11,7 +11,7 @@ For sample data task03.txt, the largest sum should be 68787
 def calculate_cluster_points(cluster):
     return sum(int(point) for point in cluster)
 
-def find_cluster_with_largest_sum(filename):
+def findcluster(filename):
     largest_sum = 0
     current_cluster = []
     
@@ -27,7 +27,7 @@ def find_cluster_with_largest_sum(filename):
     return current_cluster, largest_sum
 
 filename = "task03.txt"  
-largest_cluster, largest_sum = find_cluster_with_largest_sum(filename)
+largest_cluster, largest_sum = findcluster(filename)
 
 print("Largest cluster with sum:", largest_sum)
 for point in largest_cluster:
