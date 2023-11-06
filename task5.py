@@ -14,9 +14,19 @@ Enter stock symbol: YANG
 No matches
 """
 
-import csv
+import pandas as pd
+data = pd.read_csv('task5.csv')
 
+def stocksearch():
+    symbol = input("Enter stock symbol: ")
+    filter = data[data['Symbol'].str.contains(f"^{symbol}", case=False, regex=True)]
 
-class Search:
-    def __init__(self, filename):
-        
+    if filter.empty:
+        print("No matches")
+    elif len(filter) > 1:
+        print(f"There are {len(filter)} stocks with that symbol")
+    else:
+        print(filter)
+
+stocksearch()
+
